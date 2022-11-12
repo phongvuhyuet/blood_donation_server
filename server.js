@@ -14,6 +14,10 @@ app.use(bodyParser.json({ limit: '30mb' }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
 app.use(cors())
 
+app.get('/api/healthz', (req, res) => {
+  return res.json({ status: 'ok' })
+})
+
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

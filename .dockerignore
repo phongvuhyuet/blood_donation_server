@@ -1,0 +1,7 @@
+.eslint*
+.git*
+node_modules
+build
+README.md
+LICENSE
+.circleci
