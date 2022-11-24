@@ -3,8 +3,8 @@ import express from 'express'
 import { VolunteerController } from '../controllers/VolunteerController.js'
 // eslint-disable-next-line import/no-named-as-default
 // eslint-disable-next-line import/no-named-as-default-member
-import isAdmin from '../middleware/AdminMiddleware.js'
-import isAuth from '../middleware/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
 
 const volunteerRouter = express.Router()
 volunteerRouter.post('/', VolunteerController.addVolunteer)

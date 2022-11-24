@@ -2,9 +2,9 @@ import express from 'express'
 import multer from 'multer'
 import * as mime from 'mime-types'
 import { GiftController } from '../controllers/GiftController.js'
-import isAuth from '../middleware/AuthMiddleware.js'
-import isAdmin from '../middleware/AdminMiddleware.js'
-import isSuperAdmin from '../middleware/SuperAdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
+import isSuperAdmin from '../middlewares/SuperAdminMiddleware.js'
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

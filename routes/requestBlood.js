@@ -1,8 +1,8 @@
 import express from 'express'
 import { RequestBloodController } from '../controllers/RequestBloodController.js'
-import isAuth from '../middleware/AuthMiddleware.js'
-import isAdmin from '../middleware/AdminMiddleware.js'
-import isSuperAdmin from '../middleware/SuperAdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
+import isSuperAdmin from '../middlewares/SuperAdminMiddleware.js'
 
 const requestBloodRouter = express.Router()
 

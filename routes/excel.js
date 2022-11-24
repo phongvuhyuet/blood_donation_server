@@ -2,8 +2,8 @@ import express from 'express'
 import multer from 'multer'
 import path from 'path'
 import * as mime from 'mime-types'
-import isAuth from '../middleware/AuthMiddleware.js'
-import isAdmin from '../middleware/AdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
 import { excelHelper } from '../helpers/excel.helper.js'
 
 const storage = multer.diskStorage({

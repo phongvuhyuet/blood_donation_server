@@ -1,6 +1,6 @@
 import express from 'express'
 import { check } from 'express-validator'
-import isAuth from '../middleware/AuthMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
 import { AuthController } from '../controllers/AuthController.js'
 import { sendOTP, verifyOTP } from '../helpers/otp.helper.js'
 import { OrganizationController } from '../controllers/OrganizationController.js'
@@ -35,7 +35,7 @@ const initAPIs = (app) => {
   router.get('/organization', OrganizationController.getAllOrganizations)
   router.get('/organization/:id', OrganizationController.getOrganization)
   router.get('/getFile', OrganizationController.getImage)
-  // middleware routes
+  // middlewares routes
   // router.use(isAuth)
   return app.use('/', router)
 }

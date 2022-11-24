@@ -1,7 +1,7 @@
 import express from 'express'
 import * as DonationController from '../controllers/DonationController.js'
-import isAuth from '../middleware/AuthMiddleware.js'
-import isAdmin from '../middleware/AdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
 
 const router = express.Router()
 

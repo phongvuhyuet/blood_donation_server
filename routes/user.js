@@ -1,8 +1,8 @@
 import express from 'express'
 import { UserController } from '../controllers/UserController.js'
-import isAuth from '../middleware/AuthMiddleware.js'
-import isAdmin from '../middleware/AdminMiddleware.js'
-import isSuperAdmin from '../middleware/SuperAdminMiddleware.js'
+import isAuth from '../middlewares/AuthMiddleware.js'
+import isAdmin from '../middlewares/AdminMiddleware.js'
+import isSuperAdmin from '../middlewares/SuperAdminMiddleware.js'
 
 const userRouter = express.Router()
 
