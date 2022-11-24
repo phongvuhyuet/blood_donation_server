@@ -1,8 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
 import initAPIs from './routes/api.js'
 import organizationRouter from './routes/organization.js'
 import eventRouter from './routes/event.js'
@@ -18,11 +19,13 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const URI = process.env.DATABASE_URL
 
-// middlewares
-app.use(bodyParser.json({ limit: '30mb' }))
-app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }))
 app.use(cors())
 
+// Normal express config defaults
+app.use(morgan('dev'))
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use('/volunteer', volunteerRouter)
 app.use('/organization', organizationRouter)
 app.use('/event', eventRouter)

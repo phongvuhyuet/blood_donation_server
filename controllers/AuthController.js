@@ -46,6 +46,7 @@ const signup = async (req, res) => {
     const {
       name, email, password, phone, role,
     } = req.body
+    console.log(req.body)
     // validate input
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -53,7 +54,7 @@ const signup = async (req, res) => {
     }
     const validInput = email && password && name && phone && role
     if (!validInput) {
-      res.status(400).send('All input is required')
+      return res.status(400).send('All input is required')
     }
     const oldUser = await User.findOne({ email })
     if (oldUser) {

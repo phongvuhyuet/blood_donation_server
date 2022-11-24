@@ -10,7 +10,7 @@ const isAuth = async (req, res, next) => {
         {},
       )
       req.user = decoded
-      next()
+      return next()
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
         if (error.message === 'jwt expired') {
@@ -30,7 +30,6 @@ const isAuth = async (req, res, next) => {
   } else {
     return res.status(403).json({ msg: 'forbidden' })
   }
-  return res.status(403).json({ msg: 'forbidden' })
 }
 
 export default isAuth
