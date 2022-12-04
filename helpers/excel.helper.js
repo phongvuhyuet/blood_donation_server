@@ -150,8 +150,9 @@ const writeExcel = (data, sheetName, fname) => {
   const wb = xlsx.utils.book_new()
   try {
     xlsx.utils.book_append_sheet(wb, ws, sheetName || 'Data')
-    const fileName = `${new Date().getTime()}-${fname || 'output'}.xlsx`
-    const filePath = path.join(path.resolve(), `excel/${fileName}`)
+    const fileName = `${fname || 'output'}_${new Date().getTime()}.xlsx`
+    const filePath = path.join(path.resolve(), `excel`,`${fileName}`)
+    console.log(filePath);
     xlsx.writeFile(wb, filePath)
     return filePath
   } catch (error) {
@@ -164,6 +165,7 @@ const writeExcelFile = async (req, res) => {
   try {
     const { data, sheet_name, file_name } = req.body
     const filePath = writeExcel(data, sheet_name, file_name)
+    console.log(filePath);
     if (filePath) {
       return res.download(filePath)
     }

@@ -7,7 +7,16 @@ import QRCode from '../models/QRCode.js'
 import qrHelper from '../helpers/qr.helper.js'
 
 dotenv.config()
-
+const generateQR = async (id) => {
+  const { citizenID } = await Donation.findOne({ _id: id })
+  const record = await QRCode.findOne({ citizen_id: citizenID })
+  if (!record) {
+    const url = `${process.env.APP_URL}/donate-history/${citizenID}`
+    const qrCode = await qrHelper.generateQRCode(url)
+    const newQRCode = new QRCode({ citizen_id: citizenID, qr_code: qrCode })
+    await newQRCode.save()
+  }
+}
 const formatDonations = async (donations) => {
   const {
     _id,
@@ -34,9 +43,11 @@ const formatDonations = async (donations) => {
     email,
     blood_type,
   }
+  await generateQR(_id)
+
   const history = []
   donations.forEach((donation) => {
-    const { amount, done_date, gift_type, gift_id, is_done, event_id } = donation
+    const { amount, done_date, gift_type, gift_id, is_done, event_id, id } = donation
     if (is_done) {
       const donate = {
         eventAddress: event_id.address,
@@ -115,17 +126,6 @@ export const deleteDonation = async (req, res) => {
     return res.status(200).json(response)
   } catch (e) {
     return res.status(500).json(e)
-  }
-}
-
-const generateQR = async (id) => {
-  const { citizenID } = await Donation.findOne({ _id: id })
-  const record = await QRCode.findOne({ citizen_id: citizenID })
-  if (!record) {
-    const url = `${process.env.APP_URL}/donate-history/${citizenID}`
-    const qrCode = await qrHelper.generateQRCode(url)
-    const newQRCode = new QRCode({ citizen_id: citizenID, qr_code: qrCode })
-    await newQRCode.save()
   }
 }
 

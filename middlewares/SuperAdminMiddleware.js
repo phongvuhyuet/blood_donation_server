@@ -3,6 +3,7 @@ import User from '../models/User.js'
 const isSuperAdmin = async (req, res, next) => {
   try {
     const user = await User.findOne({ _id: req.user._id })
+    console.log(user._id)
     if (user.role.toLowerCase() === 'superadmin') {
       return next()
     }
